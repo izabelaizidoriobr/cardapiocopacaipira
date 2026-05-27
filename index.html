@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Cardápio Virtual • Copa Caipira 2026</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="shortcut icon" href="/imgs/logo.jpg" type="image/x-icon">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Crimson+Pro:wght@600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --blue: #2563EB;
+            --blue-dark: #06152E;
+            --blue-light: #3B82F6;
+            --yellow: #FFD028;
+            --yellow-soft: #FFE27A;
+            --white: #FFFFFF;
+            --black: #111111;
+            --gray: #C7D2E3;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+
+            background:
+                radial-gradient(circle at top left,
+                    rgba(255, 208, 40, 0.08),
+                    transparent 300px),
+
+                radial-gradient(circle at bottom right,
+                    rgba(59, 130, 246, 0.12),
+                    transparent 300px),
+
+                var(--blue-dark);
+
+            color: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* textura do fundo */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg,
+                    rgba(255, 255, 255, 0.03) 1px,
+                    transparent 1px);
+
+            background-size: 40px 40px;
+
+            z-index: -2;
+        }
+
+        /* HERO */
+        header {
+            position: relative;
+            min-height: 92vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 40px 20px;
+            text-align: center;
+            overflow: hidden;
+
+            background:
+                linear-gradient(rgba(6, 21, 46, 0.82),
+                    rgba(6, 21, 46, 0.92)),
+                url('/imgs/banner-hero.png');
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+
+            background:
+                radial-gradient(circle at top right,
+                    rgba(255, 208, 40, 0.12),
+                    transparent 280px),
+
+                radial-gradient(circle at bottom left,
+                    rgba(255, 255, 255, 0.05),
+                    transparent 320px);
+        }
+
+        header::after {
+            content: "";
+
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+
+            width: 100%;
+            height: 140px;
+
+            background:
+                linear-gradient(to top,
+                    var(--blue-dark),
+                    transparent);
+        }
+
+        .hero {
+            position: relative;
+            z-index: 5;
+            max-width: 950px;
+        }
+
+        .hero span {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+
+            background:
+                rgba(255, 255, 255, 0.08);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.1);
+
+            backdrop-filter: blur(12px);
+
+            color: var(--yellow);
+
+            font-weight: 700;
+            letter-spacing: 2px;
+
+            padding: 12px 24px;
+
+            border-radius: 999px;
+
+            margin-bottom: 28px;
+
+            font-size: .9rem;
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .hero h1 {
+            font-family: 'Crimson Pro', serif;
+
+            font-size: clamp(4rem, 9vw, 7rem);
+
+            line-height: .95;
+
+            color: var(--white);
+
+            margin-bottom: 24px;
+
+            text-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.35);
+        }
+
+        .hero h1 strong {
+            color: var(--yellow);
+        }
+
+        .hero p {
+            max-width: 720px;
+
+            margin: auto;
+
+            color:
+                rgba(255, 255, 255, .88);
+
+            font-size: 1.1rem;
+
+            line-height: 1.9;
+        }
+
+        .hero-buttons {
+            margin-top: 38px;
+
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 16px 30px;
+
+            border-radius: 18px;
+
+            text-decoration: none;
+
+            font-weight: 700;
+
+            transition: .3s;
+
+            font-size: .95rem;
+        }
+
+        .btn-primary {
+            background:
+                linear-gradient(135deg,
+                    var(--yellow),
+                    #FFB800);
+
+            color: var(--black);
+
+            box-shadow:
+                0 15px 30px rgba(255, 208, 40, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+        }
+
+        .btn-outline {
+            background:
+                rgba(255, 255, 255, 0.08);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.12);
+
+            color: var(--white);
+
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-outline:hover {
+            background:
+                rgba(255, 255, 255, 0.12);
+        }
+
+        /* CONTAINER */
+        .container {
+            width: min(1220px, 92%);
+            margin: auto;
+            padding: 90px 0;
+        }
+
+        /* TITULOS */
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title span {
+            display: inline-block;
+
+            background:
+                rgba(255, 208, 40, 0.08);
+
+            border:
+                1px solid rgba(255, 208, 40, 0.15);
+
+            color: var(--yellow);
+
+            padding: 10px 18px;
+
+            border-radius: 999px;
+
+            font-size: .9rem;
+            font-weight: 700;
+
+            margin-bottom: 20px;
+        }
+
+        .section-title h2 {
+            font-family: 'Crimson Pro', serif;
+
+            font-size: clamp(2.7rem, 5vw, 4.5rem);
+
+            color: var(--white);
+
+            margin-bottom: 12px;
+        }
+
+        .section-title p {
+            color: var(--gray);
+
+            font-size: 1rem;
+        }
+
+        /* GRID */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+        }
+
+        /* CARD */
+        .menu-card {
+            position: relative;
+
+            background:
+                linear-gradient(180deg,
+                    rgba(255, 255, 255, 0.98),
+                    rgba(248, 250, 255, 0.96));
+
+            border-radius: 30px;
+
+            padding: 34px;
+
+            overflow: hidden;
+
+            border:
+                1px solid rgba(255, 255, 255, 0.08);
+
+            box-shadow:
+                0 15px 40px rgba(0, 0, 0, 0.35),
+                0 0 0 1px rgba(255, 208, 40, 0.08);
+
+            transition: .4s ease;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-10px) scale(1.01);
+
+            box-shadow:
+                0 25px 60px rgba(0, 0, 0, 0.45),
+                0 0 30px rgba(255, 208, 40, 0.15);
+        }
+
+        .menu-card::after {
+            content: "";
+
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 8px;
+
+            background:
+                linear-gradient(90deg,
+                    var(--yellow),
+                    var(--blue-light),
+                    var(--yellow));
+        }
+
+        .menu-card h3 {
+            font-family: 'Crimson Pro', serif;
+
+            font-size: 2.2rem;
+
+            color: var(--blue-dark);
+
+            margin-bottom: 28px;
+        }
+
+        /* ITEMS */
+        .item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+
+            padding: 18px 0;
+
+            border-bottom:
+                1px dashed rgba(0, 0, 0, .08);
+        }
+
+        .item:last-child {
+            border-bottom: none;
+        }
+
+        .item-info h4 {
+            color: var(--black);
+
+            font-size: 1rem;
+
+            font-weight: 700;
+
+            margin-bottom: 6px;
+        }
+
+        .item-info p {
+            color: #5F6B82;
+
+            font-size: .88rem;
+
+            line-height: 1.5;
+        }
+
+        /* PREÇO */
+        .price {
+            background:
+                linear-gradient(135deg,
+                    var(--yellow),
+                    #FFB800);
+
+            color: var(--black);
+
+            font-weight: 800;
+
+            padding: 12px 16px;
+
+            border-radius: 16px;
+
+            min-width: 100px;
+
+            text-align: center;
+
+            box-shadow:
+                0 10px 25px rgba(255, 208, 40, 0.35);
+        }
+
+        /* HIGHLIGHT */
+        .highlight {
+            position: relative;
+
+            margin-top: 90px;
+
+            padding: 70px 40px;
+
+            border-radius: 40px;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(135deg,
+                    #0B2A5B,
+                    #123B80);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.08);
+
+            box-shadow:
+                0 25px 60px rgba(0, 0, 0, 0.35);
+        }
+
+        .highlight::before,
+        .highlight::after {
+            content: "";
+
+            position: absolute;
+
+            width: 260px;
+            height: 260px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255, 208, 40, 0.08);
+        }
+
+        .highlight::before {
+            top: -120px;
+            left: -100px;
+        }
+
+        .highlight::after {
+            bottom: -120px;
+            right: -100px;
+        }
+
+        .highlight-content {
+            position: relative;
+            z-index: 2;
+
+            text-align: center;
+        }
+
+        .highlight h2 {
+            font-family: 'Crimson Pro', serif;
+
+            font-size: clamp(2.5rem, 5vw, 4rem);
+
+            color: var(--yellow);
+
+            margin-bottom: 18px;
+        }
+
+        .highlight p {
+            max-width: 760px;
+
+            margin: auto;
+
+            line-height: 1.9;
+
+            color:
+                rgba(255, 255, 255, .85);
+        }
+
+        /* GAMES */
+        .games {
+            margin-top: 35px;
+
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+
+            gap: 18px;
+        }
+
+        .game {
+            background:
+                rgba(255, 255, 255, 0.08);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.08);
+
+            color: var(--white);
+
+            backdrop-filter: blur(10px);
+
+            padding: 16px 24px;
+
+            border-radius: 18px;
+
+            font-weight: 700;
+
+            transition: .3s;
+        }
+
+        .game:hover {
+            transform: translateY(-4px);
+
+            background:
+                rgba(255, 208, 40, 0.12);
+
+            border-color:
+                rgba(255, 208, 40, 0.2);
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+
+            padding: 45px 20px;
+
+            color:
+                rgba(255, 255, 255, .65);
+
+            font-size: .92rem;
+        }
+
+        /* BOTÃO */
+        .floating-btn {
+            position: fixed;
+
+            right: 22px;
+            bottom: 22px;
+
+            width: 65px;
+            height: 65px;
+
+            border: none;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(135deg,
+                    var(--yellow),
+                    #FFB800);
+
+            color: var(--black);
+
+            font-size: 1.4rem;
+            font-weight: 800;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 15px 30px rgba(255, 208, 40, 0.35);
+
+            transition: .3s;
+
+            z-index: 999;
+        }
+
+        .floating-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        /* RESPONSIVO */
+        @media(max-width:768px) {
+
+            header {
+                min-height: 100vh;
+            }
+
+            .hero h1 {
+                font-size: 4rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .menu-card {
+                padding: 28px;
+            }
+
+            .highlight {
+                padding: 50px 24px;
+            }
+
+            .item {
+                align-items: flex-start;
+            }
+
+            .price {
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+
+        <div class="hero">
+
+            <span>🇧🇷 COPA CAIPIRA 2026</span>
+
+            <h1>
+                Cardápio <strong>Virtual</strong>
+            </h1>
+
+            <p>
+                Sabores típicos, comidas deliciosas e brincadeiras tradicionais
+                para deixar sua Festa Junina ainda mais especial.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#cardapio" class="btn btn-primary">
+                    Ver Cardápio
+                </a>
+
+                <a href="#brincadeiras" class="btn btn-outline">
+                    Brincadeiras
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <main class="container">
+
+        <!-- TITULO -->
+        <div class="section-title">
+
+            <span>🍴 FESTA & SABOR</span>
+
+            <h2 id="cardapio">
+                Nosso Cardápio
+            </h2>
+
+            <p>
+                Escolha suas comidas e bebidas favoritas
+            </p>
+
+        </div>
+
+        <!-- GRID -->
+        <div class="menu-grid">
+
+            <!-- SALGADOS -->
+            <div class="menu-card">
+
+                <h3>🌽 Salgados</h3>
+
+                <div class="item">
+                    <div class="item-info">
+                        <h4>Pastel</h4>
+                        <p>Pastel tradicional da festa</p>
+                    </div>
+                    <div class="price">R$ 12,00</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-info">
+                        <h4>Cuscuz</h4>
+                        <p>Cuscuz típico junino</p>
+                    </div>
+                    <div class="price">R$ 13,00</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-info">
+                        <h4>Milho Verde</h4>
+                        <p>Milho cozido fresquinho</p>
+                    </div>
+                    <div class="price">R$ 7,00</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-info">
+                        <h4>Cachorro-Quente</h4>
+                        <p>Completo e delicioso</p>
+                    </div>
+                    <div class="price">R$ 10,00</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-info">
+                        <h4>Mini Pizza</h4>
+                        <p>Sabores variados</p>
+                    </div>
+                    <div class="price">R$ 5,00</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-info">
+                        <h4>Churrasco</h4>
+                        <p>Espetinho tradicional</p>
+                    </div>
+                    <div class="price">R$ 8,00</div>
+                </div>
+
+            </div>
+
+            <!-- DOCES -->
+            <div class="menu-card">
+
+                <h3>🍓 Doces</h3>
+
+                <div class="item">
+                    <div class="item-info">
+                        <h4>Churros</h4>
+                        <p>Quentinho</p>
+                    </div>
+                    <div class="price">R$ 12,00</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-info">
+                        <h4>Maçã do Amor</h4>
+                        <p>Cobertura crocante</p>
+                    </div>
+                    <div class="price">R$ 10,00</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-info">
+                        <h4>Morango no Espeto</h4>
+                        <p>Doce especial da festa</p>
+                    </div>
+                    <div class="price">R$ 6,00</div>
+                </div>
+
+            </div>
+
+            <!-- BEBIDAS -->
+            <div class="menu-card">
+
+                <h3>🥤 Bebidas</h3>
+
+                <div class="item">
+                    <div class="item-info">
+                        <h4>Quentão</h4>
+                        <p>Bebida típica junina</p>
+                    </div>
+                    <div class="price">R$ 5,00</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-info">
+                        <h4>Vinho Quente</h4>
+                        <p>Tradicional da festa</p>
+                    </div>
+                    <div class="price">R$ 5,00</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-info">
+                        <h4>Suco</h4>
+                        <p>Laranja ou acerola</p>
+                    </div>
+                    <div class="price">R$ 5,00</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-info">
+                        <h4>Água</h4>
+                        <p>Água mineral gelada</p>
+                    </div>
+                    <div class="price">R$ 2,00</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-info">
+                        <h4>Refrigerante Lata</h4>
+                        <p>Coca-Cola e Guaraná</p>
+                    </div>
+                    <div class="price">R$ 6,00</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-info">
+                        <h4>Cerveja Lata</h4>
+                        <p>Gelada</p>
+                    </div>
+                    <div class="price">R$ 10,00</div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- BRINCADEIRAS -->
+        <section class="highlight" id="brincadeiras">
+
+            <div class="highlight-content">
+
+                <h2>🎯 Brincadeiras Juninas</h2>
+
+                <p>
+                    Além das comidas típicas, aproveite as brincadeiras
+                    tradicionais da nossa Festa Junina e viva toda a energia
+                    da Copa Caipira 2026.
+                </p>
+
+                <div class="games">
+
+                    <div class="game">
+                        🎯 Argola — R$ 5,00
+                    </div>
+
+                    <div class="game">
+                        ⚽ Chute ao Gol — R$ 5,00
+                    </div>
+
+                    <div class="game">
+                        🤡 Boca do Palhaço
+                    </div>
+
+                    <div class="game">
+                        🎣 Pesca
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        © 2026 • Copa Caipira • Cardápio Virtual Festa Junina
+    </footer>
+
+    <!-- BOTÃO TOPO -->
+    <button class="floating-btn" id="topBtn">
+        ↑
+    </button>
+
+    <script>
+
+        const topBtn = document.getElementById('topBtn');
+
+        topBtn.addEventListener('click', () => {
+
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+
+        });
+
+        // animação dos cards
+        const cards = document.querySelectorAll('.menu-card');
+
+        const observer = new IntersectionObserver((entries) => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+
+                }
+
+            });
+
+        }, {
+            threshold: 0.1
+        });
+
+        cards.forEach(card => {
+
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(50px)';
+            card.style.transition = '.7s ease';
+
+            observer.observe(card);
+
+        });
+
+    </script>
+
+</body>
+
+</html>
